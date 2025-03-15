@@ -1,0 +1,191 @@
+ /* Umumiy stil */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+<!--            color: #333;-->
+        }
+
+        /* Navbar stil */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #1e3c72, #2a5298); /* Gradient fon */
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid white;
+        }
+
+        /* Logo va linklarni birga joylashtirish */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        #map {
+                height: 800px;
+                width: 100%;
+            }
+
+        /* Logo stil */
+        .logo {
+<!--            color: white;-->
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 20px; /* Logodan keyin bo'sh joy */
+        }
+
+        /* Navbar linklari stil */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative; /* Dropdown menyu uchun */
+        }
+
+        .nav-links li a {
+            color: white;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none !important;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Shaffof oq rang */
+<!--            color: #fff;-->
+        }
+
+        /* Dropdown menyu stil */
+        .dropdown-menu {
+            display: block; /* Har doim blok sifatida ko'rsatiladi */
+            position: absolute;
+            top: 150%;
+            left: 0%;
+<!--            background-color: #2a5298; /* Dropdown menyu fon rangi */-->
+            background-color: white;
+            color: black;
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0; /* Boshlang'ich holatda shaffof */
+            visibility: hidden; /* Boshlang'ich holatda yashirilgan */
+            transform: translateY(50px); /* Boshlang'ich holatda pastga siljitilgan */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+         }
+
+        /* Dropdown menyu ochilganda */
+        .dropdown-menu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown menyu yopilganda */
+        .dropdown-menu.closing {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+        }
+
+        /* Dropdown menyu ichidagi linklar */
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu li a {
+            padding: 8px 20px;
+            display: block;
+            text-decoration: none !important;
+            transition: background-color 0.3s ease;
+            color: black;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Shaffof oq rang */
+        }
+
+
+        /* Mobil menyu tugmasi */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+<!--            color: white;-->
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .content{
+        }
+        .content div{
+            display: flex;
+            margin-left:auto;
+        }
+
+        /* Mobil versiya uchun stil */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #2a5298; /* Mobil menyu fon rangi */
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .dropdown-menu {
+                position: static; /* Mobil versiyada dropdown menyu pastga tushadi */
+                background-color: #1e3c72; /* Mobil dropdown menyu fon rangi */
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+
+
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #1e3c72; /* Sarlavha rangi */
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Footer stil */
+        .footer {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }

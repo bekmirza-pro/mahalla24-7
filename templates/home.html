@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahalla 24</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        Mahalla 24/7
+    </nav>
+    <nav class="navbar">
+        <div class="logo-container">
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
+                <li class="dropdown">
+                    <a href="#">Mahalla</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Hudud</a></li>
+                        <li><a href="#">Tuman/Shahar</a></li>
+                        <li><a href="#">Mahallalar</a></li>
+                        <li><a href="#">Tashkilotlar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Kunlik ish</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Vazifalar</a></li>
+                        <li><a href="#">Hisobotlar</a></li>
+                        <li><a href="#">Rejalar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Rahbarlar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Direktor</a></li>
+                        <li><a href="#">Menejerlar</a></li>
+                        <li><a href="#">Bo'lim boshliqlari</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Tezkor xabarlar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Yangiliklar</a></li>
+                        <li><a href="#">E'lonlar</a></li>
+                        <li><a href="#">Ogohlantirishlar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Hamkor xodimlar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Xodimlar ro'yxati</a></li>
+                        <li><a href="#">Lavozimlar</a></li>
+                        <li><a href="#">Aloqa ma'lumotlari</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Aloqa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Telefon raqamlar</a></li>
+                        <li><a href="#">Elektron pochta</a></li>
+                        <li><a href="#">Manzil</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <button class="menu-toggle">☰</button>
+    </nav>
+
+    <div class="content">
+        <!-- Xarita qo'shish -->
+        <div id="map" style="height: 650px; width: 70%;"></div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 Mening Saytim. Barcha huquqlar himoyalangan.
+    </footer>
+
+    <script>
+        // JavaScript bilan menyuni ochish/yopish
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Dropdown menyularni boshqarish
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault(); // Linkning odatiy harakatini to'xtatish
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+                // Boshqa dropdown menyularni yopish
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                        if (otherMenu.classList.contains('open')) {
+                            otherMenu.classList.remove('open');
+                            otherMenu.classList.add('closing');
+                            setTimeout(() => {
+                                otherMenu.classList.remove('closing');
+                            }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
+                        }
+                    }
+                });
+
+                // Agar menyu ochiq bo'lsa, yopish; aks holda ochish
+                if (dropdownMenu.classList.contains('open')) {
+                    dropdownMenu.classList.remove('open');
+                    dropdownMenu.classList.add('closing');
+                    setTimeout(() => {
+                        dropdownMenu.classList.remove('closing');
+                    }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
+                } else {
+                    dropdownMenu.classList.add('open');
+                }
+            });
+        });
+
+        // Sahifaning boshqa joyiga bosilganda dropdown menyularni yopish
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                    if (dropdownMenu.classList.contains('open')) {
+                        dropdownMenu.classList.remove('open');
+                        dropdownMenu.classList.add('closing');
+                        setTimeout(() => {
+                            dropdownMenu.classList.remove('closing');
+                        }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
+                    }
+                });
+            }
+        });
+
+        // Google Maps xaritasi
+        function initMap() {
+            const location = { lat: 41.311081, lng: 69.240562 }; // Toshkent shahri
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: location,
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+</body>
+</html>
