@@ -4,151 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahalla 24</title>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="../static//style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    <nav class="navbar">
-        Mahalla 24/7
-    </nav>
-    <nav class="navbar">
-        <div class="logo-container">
-            <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
-                <li class="dropdown">
-                    <a href="#">Mahalla</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Hudud</a></li>
-                        <li><a href="#">Tuman/Shahar</a></li>
-                        <li><a href="#">Mahallalar</a></li>
-                        <li><a href="#">Tashkilotlar</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Kunlik ish</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Vazifalar</a></li>
-                        <li><a href="#">Hisobotlar</a></li>
-                        <li><a href="#">Rejalar</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Rahbarlar</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Direktor</a></li>
-                        <li><a href="#">Menejerlar</a></li>
-                        <li><a href="#">Bo'lim boshliqlari</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Tezkor xabarlar</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Yangiliklar</a></li>
-                        <li><a href="#">E'lonlar</a></li>
-                        <li><a href="#">Ogohlantirishlar</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Hamkor xodimlar</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Xodimlar ro'yxati</a></li>
-                        <li><a href="#">Lavozimlar</a></li>
-                        <li><a href="#">Aloqa ma'lumotlari</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Aloqa</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Telefon raqamlar</a></li>
-                        <li><a href="#">Elektron pochta</a></li>
-                        <li><a href="#">Manzil</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <header class="top-header">
+        <div class="logo">Mahalla 24/7</div>
+        <div class="user-info">
+            <span>Rajapov Mansur</span>
+            <span class="role">Admin</span>
         </div>
-        <button class="menu-toggle">☰</button>
+    </header>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Asosiy oyna</a></li>
+            <li class="dropdown">
+                <a href="#">Admin</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Mahalla</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Fuqarо va holatlar</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Murojat</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">SOS xabar</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Kunlik ish</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Rahbarlar</a>
+            </li>
+            <li class="dropdown">
+                <a href="#">Hamkor hodimlar</a>
+            </li>
+        </ul>
     </nav>
 
-    <div class="content">
-        <!-- Xarita qo'shish -->
-        <div id="map" style="height: 650px; width: 70%;"></div>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="search-panel">
+                <input type="date" id="date-picker" value="2025-03-13">
+                <select id="region-select">
+                    <option value="">Viloyatni tanlang</option>
+                </select>
+                <select id="district-select">
+                    <option value="">Tumanni tanlang</option>
+                </select>
+                <button>Qidirish</button>
+            </div>
+            <div class="user-list">
+                <div class="user-item">
+                    <img src="user1.jpg" alt="User">
+                    <div class="user-info">
+                        <h4>MFY Raisi</h4>
+                        <p>Atajonova Zulfiya</p>
+                        <span>93-090-23-73</span>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <img src="user1.jpg" alt="User">
+                    <div class="user-info">
+                        <h4>Yoshlar yetakchisi</h4>
+                        <p>Yoqubov Bekmirza</p>
+                        <span>93-089-03-09</span>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <img src="user1.jpg" alt="User">
+                    <div class="user-info">
+                        <h4>Xotin-qizlar faoli</h4>
+                        <p>Fayzullayeva Durdona</p>
+                        <span>93-868-65-60</span>
+                    </div>
+                </div>
+                <!-- More users -->
+            </div>
+        </aside>
+        <section class="map-container">
+            <div class="map-filters">
+                <button>Oyoq bog‘</button>
+                <button>Video kuzatuv</button>
+                <button class="green">Berktilgan ma’sullar</button>
+                <button>Demografik ma'lumotlar</button>
+            </div>
+            <div id="map"></div>
+        </section>
     </div>
 
     <footer class="footer">
-        &copy; 2025 Mening Saytim. Barcha huquqlar himoyalangan.
+        &copy; 2025 Mahalla 24/7. Barcha huquqlar himoyalangan.
     </footer>
 
     <script>
-        // JavaScript bilan menyuni ochish/yopish
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Dropdown menyularni boshqarish
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        dropdowns.forEach(dropdown => {
-            dropdown.addEventListener('click', function(e) {
-                e.preventDefault(); // Linkning odatiy harakatini to'xtatish
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-
-                // Boshqa dropdown menyularni yopish
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        const otherMenu = otherDropdown.querySelector('.dropdown-menu');
-                        if (otherMenu.classList.contains('open')) {
-                            otherMenu.classList.remove('open');
-                            otherMenu.classList.add('closing');
-                            setTimeout(() => {
-                                otherMenu.classList.remove('closing');
-                            }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
-                        }
-                    }
-                });
-
-                // Agar menyu ochiq bo'lsa, yopish; aks holda ochish
-                if (dropdownMenu.classList.contains('open')) {
-                    dropdownMenu.classList.remove('open');
-                    dropdownMenu.classList.add('closing');
-                    setTimeout(() => {
-                        dropdownMenu.classList.remove('closing');
-                    }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
-                } else {
-                    dropdownMenu.classList.add('open');
-                }
-            });
-        });
-
-        // Sahifaning boshqa joyiga bosilganda dropdown menyularni yopish
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                    if (dropdownMenu.classList.contains('open')) {
-                        dropdownMenu.classList.remove('open');
-                        dropdownMenu.classList.add('closing');
-                        setTimeout(() => {
-                            dropdownMenu.classList.remove('closing');
-                        }, 300); // CSS dagi transition vaqtiga mos qilib (0.3s)
-                    }
-                });
-            }
-        });
-
-        // Google Maps xaritasi
         function initMap() {
-            const location = { lat: 41.311081, lng: 69.240562 }; // Toshkent shahri
+            const location = { lat: 41.311081, lng: 69.240562 };
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: location,
             });
-            const marker = new google.maps.Marker({
+            new google.maps.Marker({
                 position: location,
                 map: map,
             });
         }
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-</script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = L.map("map").setView([41.2995, 69.2401], 12); // Toshkent koordinatalari
+    
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "&copy; OpenStreetMap contributors"
+            }).addTo(map);
+    
+            L.marker([41.2995, 69.2401])
+                .addTo(map)
+                .bindPopup("Toshkent, O'zbekiston")
+                .openPopup();
+        });
+    </script>
+    <script>
+        // O'zbekiston viloyatlari va ularning tumanlari
+        const regions = {
+            "Toshkent": ["Bektemir", "Mirobod", "Uchtepa", "Yunusobod"],
+            "Samarqand": ["Bulung‘ur", "Jomboy", "Kattaqo‘rg‘on"],
+            "Andijon": ["Andijon sh.", "Xonobod", "Shahrixon"],
+            "Farg‘ona": ["Marg‘ilon", "Qo‘qon", "Oltiariq"],
+            "Namangan": ["Namangan sh.", "Chortoq", "Chust"],
+            "Qashqadaryo": ["Qarshi", "Shahrisabz", "G‘uzor"],
+            "Surxondaryo": ["Termiz", "Denov", "Sherobod"],
+            "Xorazm": ["Urganch", "Xiva", "Gurlan"],
+            "Buxoro": ["Buxoro sh.", "G‘ijduvon", "Kogon"],
+            "Navoiy": ["Navoiy sh.", "Zarafshon", "Uchquduq"],
+            "Jizzax": ["Jizzax sh.", "G‘allaorol", "Zomin"],
+            "Sirdaryo": ["Guliston", "Yangiyer", "Boyovut"]
+        };
+    
+        // Viloyatlar select'ga qo'shish
+        const regionSelect = document.getElementById("region-select");
+        const districtSelect = document.getElementById("district-select");
+    
+        Object.keys(regions).forEach(region => {
+            let option = new Option(region, region);
+            regionSelect.appendChild(option);
+        });
+    
+        // Viloyat tanlanganda tumanlar chiqishi
+        regionSelect.addEventListener("change", function () {
+            districtSelect.innerHTML = '<option value="">Tumanni tanlang</option>';
+            let selectedRegion = regionSelect.value;
+            if (selectedRegion) {
+                regions[selectedRegion].forEach(district => {
+                    let option = new Option(district, district);
+                    districtSelect.appendChild(option);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
